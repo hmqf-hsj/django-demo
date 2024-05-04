@@ -132,3 +132,15 @@ python manage.py startapp app名称
 这样该app的目录将被创建。
 
 随后修改```test_django/urls.py```，import这个新的app，修改```test_django/settings.py```注册这个新的app。
+
+# 总结
+
+前端html代码在```/templates/*.html```
+
+前端css或js代码在```/static/css```和```/static/js```
+
+后端路由在```/test_django/urls.py```
+
+后端配置在```/test_django/settings.py```
+
+后端业务逻辑在```/page_changer/views.py```和```/testbackend/views.py```

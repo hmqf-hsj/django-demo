@@ -1,0 +1,14 @@
+.lineItem{
+    background-color: lightyellow;
+    width: 300px;
+    height: 40px;
+    float: top;
+    text-align: left;
+    line-height: 40px;
+}
+.lineItem>div{
+    background-color: beige;
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}

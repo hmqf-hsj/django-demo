@@ -1,0 +1,67 @@
+{% load static %} <!-- include this line in all html files to enable Django template  -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <script src="{% static 'js/jquery-3.4.1.js' %}"></script> <!-- method to load js -->
+    <link rel="stylesheet" href="{% static 'css/test.css' %}"> <!-- method to load files in static folder -->
+</head>
+<body>
+
+<div class="lineItem">
+  <div>Choose a name to test sql:</div>
+  <div>
+    <select id="username">
+      <option value="Alice" selected>Alice</option>
+      <option value="Bob">Bob</option>
+      <option value="Eve">Eve</option>
+    </select>
+  </div>
+</div>
+<div class="lineItem" style="text-align: center;background-color: lightcyan;">
+  <button id="testGetBtn" onclick="testdb()">test sql</button>
+</div>
+<div class="lineItem" style="text-align: center;">
+  <button id="testPostBtn" onclick="clickHandler(true)">test post</button>
+  <button id="testGetBtn" onclick="clickHandler(false)">test get</button>
+</div>
+
+
+
+<p id="showResp"></p>
+
+<script>
+  function testdb(){
+    fetch(new Request('http://localhost:8000/test_db',{
+        method: "POST", 
+        headers: {'Content-Type': 'application/json;charset-UTF-8'},
+        body:JSON.stringify({"username": document.getElementById("username").value})
+    }))
+    .then((resp)=>resp.json())
+    .then((data)=>{
+      var str="";
+      data.result.forEach(element => {
+        str+="id: "+element["id"]+", name: "+element["name"]+", age: "+element["age"]+"\n";
+      });
+      document.getElementById("showResp").innerText=str;
+    })
+    
+  }
+  function clickHandler(reqType){
+    if(reqType)
+      fetch(new Request('http://localhost:8000/test_post',{
+          method: "POST", 
+          headers: {'Content-Type': 'application/json;charset-UTF-8'},
+          body:JSON.stringify({"key1": "hello", "key2": "world"})
+      }))
+      .then((resp)=>resp.json())
+      .then((data)=>{document.getElementById("showResp").innerText=data.result})
+    else
+      fetch("http://localhost:8000/test_get?key1=hello&key2=world")
+      .then((resp)=>resp.json())
+      .then((data)=>{document.getElementById("showResp").innerText=data.result})
+  }
+</script>
+
+</body>
+</html>

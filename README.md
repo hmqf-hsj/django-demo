@@ -1,5 +1,13 @@
 # 如何启动工程
 
+安装依赖（使用python3的pip，非python2）
+
+```
+pip install Django pymysql sqlalchemy
+```
+
+（可能不全，如果运行起来报错就按照报错安装相应的pip模块，没有版本限制）
+
 首先跳转到工程根目录，然后执行：
 
 ```

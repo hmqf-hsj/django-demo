@@ -12,6 +12,10 @@ python manage.py runserver
 python manage.py runserver 端口号
 ```
 
+### 注：这只是一个Django示例工程，帮助你们熟悉Django框架。请不要将项目的代码推送到这个仓库。
+
+### 真正的项目代码仓库我之后会创建。
+
 # 工程结构介绍
 
 ```
